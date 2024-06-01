@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'chatbot',
     'User',
-    'Home'
+    'Home',
+    'businessPrediction'
 ]
 
 MIDDLEWARE = [

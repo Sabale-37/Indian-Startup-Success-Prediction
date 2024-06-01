@@ -1,0 +1,172 @@
+{% extends "./base.html" %} {% block content %}
+<main class="main">
+  <h1>Business success prediction</h1>
+  <form action="/prediction/dashboard/" method="POST">
+    {% csrf_token %}
+    <div class="grid">
+      <div class="grid-item">
+        <label for="Sector" class="label"> Sector</label>
+        <select name="Sector" id="Sector" class="input">
+          <option value="FinTech">FinTech</option>
+          <option value="Logistics">Logistics</option>
+          <option value="HealthTech">HealthTech</option>
+          <option value="AgriTech">AgriTech</option>
+          <option value="FoodTech">FoodTech</option>
+          <option value="EdTech">EdTech</option>
+          <option value="E-Commerce">E-Commerce</option>
+          <option value="CleanTech">CleanTech</option>
+          <option value="PropTech">PropTech</option>
+          <option value="InsurTech">InsurTech</option>
+          <option value="BioTech">BioTech</option>
+        </select>
+      </div>
+
+      <div class="grid-item">
+        <label for="City" class="City"> City </label>
+        <select name="City" id="City" class="input">
+          <option value="Bangalore">Bangalore</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Pune">Pune</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Jaipur">Jaipur</option>
+          <option value="Kolkata">Kolkata</option>
+        </select>
+      </div>
+
+      <div class="grid-item">
+        <label for="Startup_Name" class="label"> Startup_Name</label>
+        <select name="Startup_Name" id="Startup_Name" class="input">
+          <option value="FinTechCo">FinTechCo</option>
+          <option value="TechHub">TechHub</option>
+          <option value="BioMedSolutions">BioMedSolutions</option>
+          <option value="GreenEnergyInc">GreenEnergyInc</option>
+          <option value="AIInnovations">AIInnovations</option>
+          <option value="HealthTechLtd">HealthTechLtd</option>
+          <option value="SpaceTech">SpaceTech</option>
+          <option value="EdTechSolutions">EdTechSolutions</option>
+          <option value="RoboTech">RoboTech</option>
+          <option value="CyberSecuCo">CyberSecuCo</option>
+        </select>
+      </div>
+
+      <div class="grid-item">
+        <label for="Founded_Year" class="label">Founded_Year</label
+        ><input
+          type="number"
+          id="Founded_Year"
+          class="input"
+          value="2024"
+          name="Founded_Year"
+        />
+      </div>
+
+      <div class="grid-item">
+        <label for="Funding_Amount" class="label">Funding_Amount</label
+        ><input
+          type="number"
+          id="Funding_Amount"
+          class="input"
+          value="10000"
+          name="Funding_Amount"
+        />
+      </div>
+
+      <div class="grid-item">
+        <label for="Funding_Rounds" class="label">Funding_Rounds</label
+        ><input
+          type="number"
+          id="Funding_Rounds"
+          class="input"
+          value="1"
+          name="Funding_Rounds"
+        />
+      </div>
+
+      <div class="grid-item">
+        <label for="Investor_Count" class="label">Investor_Count</label
+        ><input
+          type="number"
+          id="Investor_Count"
+          class="input"
+          value="1"
+          name="Investor_Count"
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Team_Size" class="label">Team_Size</label
+        ><input
+          type="number"
+          id="Team_Size"
+          class="input"
+          value="1"
+          name="Team_Size"
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Revenue" class="label">Revenue</label
+        ><input
+          type="number"
+          id="Revenue"
+          class="input"
+          value="100000"
+          name="Revenue"
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Profit_Margin" class="label">Profit Margin</label>
+        <input
+          type="number"
+          id="Profit_Margin"
+          class="input"
+          name="Profit_Margin"
+          value='30'
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Customer_Count" class="label">Customer Count</label>
+        <input
+          type="number"
+          id="Customer_Count"
+          class="input"
+          name="Customer_Count"
+          value='20000'
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Growth_Rate" class="label">Growth Rate</label>
+        <input
+          type="number"
+          id="Growth_Rate"
+          class="input"
+          name="Growth_Rate"
+          value='30'
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Founder_Experience" class="label">Founder Experience</label>
+        <input
+          type="number"
+          id="Founder_Experience"
+          class="input"
+          name="Founder_Experience"
+          value="10"
+        />
+      </div>
+      <div class="grid-item">
+        <label for="Market_Size" class="label">Market Size</label>
+        <input
+          type="number"
+          id="Market_Size"
+          class="input"
+          name="Market_Size"
+          value='5000000'
+        />
+      </div>
+    </div>
+
+    <button type="submit" class="submit">check</button>
+  </form>
+</main>
+{% endblock content %}
