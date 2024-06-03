@@ -1,0 +1,22 @@
+{% extends "./base.html" %} {% block content %}
+
+<body>
+  <h1>{{ company.name }}</h1>
+  <p><strong>Founded:</strong> {{ company.start_year }}</p>
+  <p><strong>Description:</strong> {{ company.description }}</p>
+  <p><strong>Username:</strong> {{ company.username }}</p>
+  <p><strong>Revenue:</strong> {{ company.revenue }}</p>
+  <p><strong>Founder:</strong> {{ company.founder }}</p>
+  <p><strong>Investment Round:</strong> {{ company.investment_round }}</p>
+  <img src="{{ company.image.url }}" alt="{{ company.name }}" />
+  {% if request.user.is_superuser %}
+  <form action="/invest/pitch" method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" value="{{company.username}}" />
+    <button type="submit">send request for pitch</button>
+  </form>
+
+  {% endif %}
+</body>
+
+{% endblock content %}
