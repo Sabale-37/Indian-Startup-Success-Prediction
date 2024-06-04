@@ -41,7 +41,7 @@ def chat_view(request):
    
 def image_captioning(request):
     if request.method == 'POST':
-        prompt = 'Write a Large caption for this image'
+        prompt = 'give key important point of the products brand ,price , quality and durability ,features and how we can start a startup by selling this product '
         # image_file = Image.open(r'C:\Users\Dell\Desktop\Django\AIBot\chatbot\static\images\robo.jpg')
         image_file = request.FILES['image']
         print(Image.open(image_file))

@@ -375,7 +375,6 @@ form {
   outline: 1px solid var(--color-red);
 }
 
-
 h3 {
   font-size: 2rem;
   font-weight: 400;
@@ -396,8 +395,7 @@ h3 {
   outline: 1px solid var(--color-red);
 }
 
-
-.caption-message{
+.caption-message {
   display: flex;
   margin-top: 3rem;
   margin-left: 7rem;

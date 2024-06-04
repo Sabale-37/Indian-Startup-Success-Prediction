@@ -1,17 +1,40 @@
-{% extends "./basic.html" %} {% block content %}
+{% extends "./main.html" %} {% block content %}
 <body>
   <h1>Investment Pitch Form</h1>
-  <form method="post">
+  <form method="post" class="grid">
     {% csrf_token %}
 
+    <div class='grid-item'>
+
     <label for="to">to</label>
-    <input type="text" id="to" name="to" required value="{{username}}" /><br />
+    <input
+      type="text"
+      id="to"
+      name="to"
+      required
+      value="{{username}}"
+      class="input"
+    />
+    
+    <br />
 
     <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required /><br />
+    <input
+      type="text"
+      id="location"
+      name="location"
+      required
+      class="input"
+    /><br />
 
     <label for="pitch_date">Pitch Date:</label>
-    <input type="date" id="pitch_date" name="pitch_date" required /><br />
+    <input
+      type="date"
+      id="pitch_date"
+      name="pitch_date"
+      required
+      class="input"
+    /><br />
 
     <label for="funding_association_name">Funding Association Name:</label>
     <input
@@ -19,6 +42,7 @@
       id="funding_association_name"
       name="funding_association_name"
       required
+      class="input"
     /><br />
 
     <button type="submit">Submit</button>

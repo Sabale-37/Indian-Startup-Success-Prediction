@@ -1,0 +1,19 @@
+{
+  "start_year": "2020",
+  "description": "A description of the company",
+  "revenue": "1000000",
+  "founder": "John Doe",
+  "investment_round": "Series A",
+  "yearwise_revenue": [
+    { "year": "2020", "revenue": "500000" },
+    { "year": "2021", "revenue": "50034" },
+    { "year": "2022", "revenue": "500000" },
+    { "year": "2023", "revenue": "40000" }
+  ],
+  "yearwise_growth": [
+    { "year": "2020", "growth": "20%" },
+    { "year": "2021", "growth": "5%" },
+    { "year": "2022", "growth": "2%" },
+    { "year": "2023", "growth": "4%" }
+  ]
+}

@@ -10,7 +10,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 def train_and_predict_hr_model(satisfaction_level, last_evaluation, number_project, average_montly_hours, 
                                time_spend_company, work_accident, promotion_last_5years, salary):
     # Importing the dataset
-    dataset = pd.read_csv(r'C:\Users\Admin\Desktop\Indian-Startup-Success-Prediction\businessPrediction\HR.csv')
+    dataset = pd.read_csv(r'C:\Users\Asus\Desktop\git hackathon\Indian-Startup-Success-Prediction\businessPrediction\HR.csv')
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, -1].values
 

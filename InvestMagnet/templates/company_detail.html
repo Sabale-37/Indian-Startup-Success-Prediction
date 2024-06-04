@@ -1,4 +1,4 @@
-{% extends "./basic.html" %} {% block content %}
+{% extends "./main.html" %} {% block content %}
 
 <body>
   <h1>{{ company.name }}</h1>
@@ -12,7 +12,7 @@
   {% if request.user.is_superuser %}
   <form action="/invest/pitch" method="POST">
     {% csrf_token %}
-    <input type="text" name="username" value="{{company.username}}" />
+    <input type="text" name="username" value="{{company.username}}" hidden/>
     <button type="submit">send request for pitch</button>
   </form>
 

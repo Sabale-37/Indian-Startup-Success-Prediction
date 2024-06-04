@@ -13,7 +13,7 @@ def process_and_train_model(
                             founder_experience, market_size):
     
     # Importing dataset
-    dataset = pd.read_csv(r'C:\Users\Admin\Desktop\Indian-Startup-Success-Prediction\businessPrediction\tanya.csv')
+    dataset = pd.read_csv(r'C:\Users\Asus\Desktop\git hackathon\Indian-Startup-Success-Prediction\businessPrediction\tanya.csv')
     X = dataset.iloc[:, :-1].values
     y = dataset.iloc[:, -1].values
 
