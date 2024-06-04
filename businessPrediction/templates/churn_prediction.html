@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main">
+    <h1>Churn prediction</h1>
+    <form action="/prediction/churn_dashboard/" method="POST">
+      {% csrf_token %}
+     
+  <div class='grid'>
+      <div class='grid-item'>
+        <label for="satisfaction_level" class="label">Satisfaction Level</label>
+        <input type="number" step="0.01" id="satisfaction_level" class="input" name="satisfaction_level" required>
+    </div>
+    <div class='grid-item'>
+        <label for="last_evaluation" class="label">Last Evaluation</label>
+        <input type="number" step="0.01" id="last_evaluation" class="input" name="last_evaluation" required>
+    </div>
+    <div class='grid-item'>
+        <label for="number_project" class="label">Number of Projects</label>
+        <input type="number" id="number_project" class="input" name="number_project" required>
+    </div>
+    <div class='grid-item'>
+        <label for="average_montly_hours" class="label">Average Monthly Hours</label>
+        <input type="number" id="average_montly_hours" class="input" name="average_montly_hours" required>
+    </div>
+    <div class='grid-item'>
+        <label for="time_spend_company" class="label">Time Spent in Company (Years)</label>
+        <input type="number" id="time_spend_company" class="input" name="time_spend_company" required>
+    </div>
+    <div class='grid-item'>
+        <label for="work_accident" class="label">Work Accident (0 or 1)</label>
+        <input type="number" id="work_accident" class="input" name="work_accident" required>
+    </div>
+    <div class='grid-item'>
+        <label for="promotion_last_5years" class="label">Promotion in Last 5 Years (0 or 1)</label>
+        <input type="number" id="promotion_last_5years" class="input" name="promotion_last_5years" required>
+    </div>
+    <div class='grid-item'>
+        <label for="salary" class="label">Salary</label>
+        <select id="salary" class="input" name="salary" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+    </div>
+
+      </div>
+  
+      <button type="submit" class="submit">check</button>
+    </form>
+  </main>
+
+
+
+
+{% endblock content %}
+
+
+
+

@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {% load static %}
     <link rel="shortcut icon" type="png" href="images/icon/favicon.png" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Comaptible" content="IE=edge" />
     <title>{% block title %}{% endblock title %}</title>
     <meta name="desciption" content="" />
-
-    <!-- Bootstrap CSS -->
-<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-<!-- Bootstrap JavaScript -->
-<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- Bootstrap CSS CDN -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap JavaScript CDN -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
     <link
       rel="stylesheet"
       type="text/css"
@@ -49,8 +39,8 @@
         </div>
         <ul>
           <li><a class="active" href="/">Home</a></li>
-          <li><a href="{% url "company" %}">View</a></li>
-          <li><a href="{% url "add" %}">Add Company</a></li>
+          <li><a href="{% url "churn" %}">Employee Prediction</a></li>
+          <li><a href="{% url "churn_dashboard" %}">dashboard</a></li>
         </ul>
         <div class="srch">
           <input type="text" class="search" placeholder="Search here..." /><img

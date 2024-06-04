@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .startup_prediction import process_and_train_model
-
+from .churn_prediction import train_and_predict_hr_model
 # Create your views here.
 
 def prediction_business(request):
@@ -66,3 +66,32 @@ def dashboard(request):
         # Handle GET request (if any)
         return render(request, 'dashboard.html')
     
+
+
+def churn(request):
+    return render(request, 'churn_prediction.html')
+
+
+def predict_employee_status(request):
+    if request.method == 'POST':
+        # Extract data from POST request
+        satisfaction_level = request.POST.get('satisfaction_level')
+        last_evaluation = request.POST.get('last_evaluation')
+        number_project = request.POST.get('number_project')
+        average_montly_hours = request.POST.get('average_montly_hours')
+        time_spend_company = request.POST.get('time_spend_company')
+        work_accident = request.POST.get('work_accident')
+        promotion_last_5years = request.POST.get('promotion_last_5years')
+        salary = request.POST.get('salary')
+
+        result = train_and_predict_hr_model(satisfaction_level, last_evaluation, number_project, average_montly_hours, time_spend_company, work_accident, promotion_last_5years, salary)
+
+        categories = ['Satisfaction Level', 'Last Evaluation', 'Number of Projects', 'Average Monthly Hours',
+              'Time Spent in Company', 'Work Accident', 'Promotion in Last 5 Years', 'Salary']
+        values = [satisfaction_level, last_evaluation, number_project, average_montly_hours,
+          time_spend_company, work_accident, promotion_last_5years, salary]
+
+        return render(request,'churn_dashboard.html', {'prediction': result ,'categories': categories,
+            'values': values})
+
+    return render(request)
