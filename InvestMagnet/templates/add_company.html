@@ -2,86 +2,53 @@
 
 <!DOCTYPE html>
 <html>
+  {% load static %}
   <head>
     <title>Add New Company</title>
   </head>
   <body>
     <h1>Add New Company</h1>
-    <form method="post" enctype="multipart/form-data" style="grid">
-      {% csrf_token %}
+    <div style="padding: 5rem">
+      <form method="post" enctype="multipart/form-data" style="grid">
+        {% csrf_token %}
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th scope="row"><label for="image">Image:</label></th>
+              <td><input type="file" id="image" name="image" required /></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="data_file" class="label">Data File (JSON):</label>
+              </th>
+              <td>
+                <input type="file" id="data_file" name="data_file" required />
+              </td>
+            </tr>
 
-      <div class="grid-item">
-        <label for="start_year" class="label">Start Year</label
-        ><input
-          type="number"
-          id="Founded_Year"
-          class="input"
-          value="2024"
-          name="start_year"
-        />
-      </div>
+            <tr>
+              <th scope="row">
+                <a
+                  href="{% static "data.json" %}"
+                  download='data.json'
+                >
+                  Download</a
+                >
+              </th>
+              <td>download the json file for reference</td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div class="grid-item">
-        <label for="description" >description</label
-        ><textarea
-          type="number"
-          id="Founded_Year"
-          class="input"
-          value="2024"
-          name="description"
-        />
-      </textarea>
-      </div>
-
-    
-
-      <label for="image">Image:</label>
-      <input type="file" id="image" name="image" required /><br />
-
-      <div class="grid-item">
-        <label for="revenue" class="label">Revenue</label
-        ><input
-          type="number"
-          id="Founded_Year"
-          class="input"
-          value="2024"
-          name="revenue"
-        />
-      </div>
-
-
-      <div class="grid-item">
-        <label for="founder" class="label">founder</label
-        ><input
-          type="text"
-          id="Founded_Year"
-          class="input"
-         
-          name="founder"
-        />
-      </div>
-
-
-      <div class="grid-item">
-        <label for="founder" class="label">investment_round</label
-        ><input
-          type="text"
-          id="Founded_Year"
-          class="input"
-         
-          name="investment_round"
-        />
-      </div>
-
-      
-
-     
-
-   
-
-
-      <button type="submit">Add Company</button>
-    </form>
+        <button
+          type="submit"
+          class="get-started"
+          style="margin-left: 0rem; margin-top: 1rem"
+        >
+          Add Company
+        </button>
+      </form>
+    </div>
   </body>
 </html>
 

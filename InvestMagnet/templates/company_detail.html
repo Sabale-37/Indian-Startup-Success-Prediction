@@ -1,22 +1,241 @@
 {% extends "./main.html" %} {% block content %}
 
+<style>
+  .canvas-container {
+    width: 500px;
+    height: 500px;
+    margin: 0 8rem;
+    
+    display: inline-block;
+  }
+</style>
+
 <body>
-  <h1>{{ company.name }}</h1>
-  <p><strong>Founded:</strong> {{ company.start_year }}</p>
-  <p><strong>Description:</strong> {{ company.description }}</p>
-  <p><strong>Username:</strong> {{ company.username }}</p>
-  <p><strong>Revenue:</strong> {{ company.revenue }}</p>
-  <p><strong>Founder:</strong> {{ company.founder }}</p>
-  <p><strong>Investment Round:</strong> {{ company.investment_round }}</p>
-  <img src="{{ company.image.url }}" alt="{{ company.name }}" />
+  <h1>{{ company.company_name }}</h1>
+  <div style='padding: 2rem'>
+    <table class="table table-bordered">
+      
+      <tbody>
+        <tr>
+          <th scope="row">Founded</th>
+          <td>{{ company.start_year }}</td>
+         
+        </tr>
+        <tr>
+          <th scope="row">Founder</th>
+          <td>{{ company.founder }}</td>
+         
+        </tr>
+        <tr>
+          <th scope="row">Description</th>
+          <td>{{ company.description }}</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Problem Statement</th>
+          <td colspan="2"> {{ company.problem_statement }}</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Solution</th>
+          <td colspan="2">{{ company.solution }}</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Revenue</th>
+          <td colspan="2">{{ company.market_opportunity }}</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Market Opportunity</th>
+          <td colspan="2">{{ company.revenue }}</td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Investment Round</th>
+          <td colspan="2">{{ company.investment_round }}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  
   {% if request.user.is_superuser %}
   <form action="/invest/pitch" method="POST">
     {% csrf_token %}
-    <input type="text" name="username" value="{{company.username}}" hidden/>
-    <button type="submit">send request for pitch</button>
+    <input type="text" name="username" value="{{company.username}}" hidden />
+    <button type="submit" class='get-started' style='margin-top: 1rem ;margin-left: 0rem'>send request for pitch</button>
   </form>
 
   {% endif %}
+
+</div>
+
+  <br> <br> <br> <br> <br> <br>
+
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- HTML canvas element to render the chart -->
+  <div class='canvas-container'>
+  <h1> year wise revenue <h1>
+   
+  <canvas id="yearwise-revenue-chart" width="400" height="200"></canvas>
+    </div>
+
+    <div class='canvas-container'>
+      <h1> Year wise growth <h1>
+  <canvas id="yearwise-growth-chart" width="400" height="200"></canvas>
+    </div>
+
+  <div class='canvas-container' style='margin-bottom: 2rem'>
+    <h1> Digital marketing Sources <h1>
+  <canvas id="digital-marketing-chart" width="400" style="height: 300px;"></canvas>
+  </div>
+
+  <div class='canvas-container' style='margin-bottom: 2rem'>
+    <h1> financial graph<h1>
+      <canvas id="financial-graph-chart" width="400" height="200"></canvas>
+  </div>
+
+  <br>
+  <br><br><br><br>
+
+  <script>
+    // Retrieve data passed from the view
+    var yearwiseRevenueData = {{ yearwise_revenue_data|safe }};
+
+    // Extract years and revenues from the data
+    var years = yearwiseRevenueData.map(entry => entry.year);
+    var revenues = yearwiseRevenueData.map(entry => entry.revenue);
+
+    // Render the chart using Chart.js
+    var ctx = document.getElementById('yearwise-revenue-chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Yearwise Revenue',
+                data: revenues,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    //Growth
+    var yearwiseGrowthData = {{ yearwise_growth_data|safe }};
+    var yearsGrowth = yearwiseGrowthData.map(entry => entry.year);
+    var growth = yearwiseGrowthData.map(entry => parseFloat(entry.growth.replace('%', '')));
+
+    var ctxGrowth = document.getElementById('yearwise-growth-chart').getContext('2d');
+    var myBarChart = new Chart(ctxGrowth, {
+        type: 'bar',
+        data: {
+            labels: yearsGrowth,
+            datasets: [{
+                label: 'Yearwise Growth',
+                data: growth,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                }]
+            }
+        }
+    });
+
+    //DIGITAL marketing
+    var digitalMarketingData = {{ digital_marketing_data|safe }};
+    var marketingObject = digitalMarketingData[0];  // Extract the dictionary from the list
+    var labels = Object.keys(marketingObject);
+    var data = Object.values(marketingObject).map(value => parseFloat(value.replace('%', '')));
+
+    var ctxMarketing = document.getElementById('digital-marketing-chart').getContext('2d');
+    var myPieChart = new Chart(ctxMarketing, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    //financial data
+    var financialGraphData = {{ financial_graph_data|safe }};
+    var yearsFinancial = financialGraphData.map(entry => entry.year);
+    var totalSales = financialGraphData.map(entry => entry.total_sales);
+    var newIncome = financialGraphData.map(entry => entry.new_income);
+
+    var ctxFinancial = document.getElementById('financial-graph-chart').getContext('2d');
+    var myChart = new Chart(ctxFinancial, {
+        type: 'line',
+        data: {
+            labels: yearsFinancial,
+            datasets: [{
+                label: 'Total Sales',
+                data: totalSales,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Net Income',
+                data: newIncome,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+  </script>
 </body>
 
 {% endblock content %}
