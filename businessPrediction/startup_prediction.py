@@ -4,7 +4,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.metrics import accuracy_score
 
 def process_and_train_model(
                             sector, city, startup_name, founded_year, funding_amount, 
@@ -18,14 +18,14 @@ def process_and_train_model(
     y = dataset.iloc[:, -1].values
 
     # Encoding categorical data
-    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0, 1, 2])], remainder='passthrough')
-    X = ct.fit_transform(X).toarray()
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(sparse_output=False, handle_unknown='ignore'), [0, 1, 2])], remainder='passthrough')
+    X = ct.fit_transform(X)
 
     # Splitting the dataset into the Training set and Test set
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 
     # Feature scaling
-    sc = StandardScaler()
+    sc = StandardScaler(with_mean=False)
     X_train = sc.fit_transform(X_train)
     X_test = sc.transform(X_test)
 
@@ -36,6 +36,7 @@ def process_and_train_model(
     # Making predictions on the test set for evaluation
     y_pred = classifier.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
+    print(f'Model Accuracy: {accuracy}')
 
     # Preprocessing the input data
     input_data = pd.DataFrame([[sector, city, startup_name, founded_year, funding_amount, 
@@ -47,7 +48,7 @@ def process_and_train_model(
                                        'Profit_Margin', 'Customer_Count', 'Growth_Rate', 
                                        'Founder_Experience', 'Market_Size'])
     
-    input_data = ct.transform(input_data).toarray()
+    input_data = ct.transform(input_data)
     input_data = sc.transform(input_data)
 
     # Making prediction on the input data
@@ -60,21 +61,20 @@ def process_and_train_model(
     return performance
 
 
-performance= process_and_train_model( 
-                                    sector="FinTech", 
-                                                city="Bangalore", 
-                                                startup_name="HealthInc", 
-                                                founded_year=2020, 
-                                                funding_amount=5000000, 
-                                                funding_rounds=3, 
-                                                investor_count=10, 
-                                                team_size=50, 
-                                                revenue=2000000, 
-                                                profit_margin=0.2, 
-                                                customer_count=10000, 
-                                                growth_rate=0.15, 
-                                                founder_experience=10, 
-                                                market_size=100000000)
+performance = process_and_train_model(
+                                    sector="Gomatesh", 
+                                    city="NewCity", 
+                                    startup_name="NewStartup", 
+                                    founded_year=2021, 
+                                    funding_amount=1000000, 
+                                    funding_rounds=2, 
+                                    investor_count=5, 
+                                    team_size=20, 
+                                    revenue=500000, 
+                                    profit_margin=0.1, 
+                                    customer_count=5000, 
+                                    growth_rate=0.1, 
+                                    founder_experience=5, 
+                                    market_size=50000000)
 
 print("Performance:", performance)
-

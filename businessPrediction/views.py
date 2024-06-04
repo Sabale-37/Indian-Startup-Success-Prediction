@@ -46,8 +46,22 @@ def dashboard(request):
             market_size=market_size
         )
 
+        # Data for the graph
+        categories = ['Founded Year', 'Funding Amount', 'Funding Rounds', 'Investor Count',
+                      'Team Size',  'Profit Margin', 'Customer Count', 'Growth Rate',
+                      'Founder Experience']
+        values = [founded_year, funding_amount, funding_rounds, investor_count, team_size,
+                  profit_margin, customer_count, growth_rate, founder_experience]
+
+        # Pass the data to the template
+        context = {
+            'categories': categories,
+            'values': values,
+        }
+
         # Now you have the predicted performance, you can do whatever you want with it
-        return render(request, 'dashboard.html', {'prediction': performance})
+        return render(request, 'dashboard.html', {'prediction': performance ,'categories': categories,
+            'values': values} )
     else:
         # Handle GET request (if any)
         return render(request, 'dashboard.html')

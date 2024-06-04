@@ -7,9 +7,7 @@
   </head>
   <body>
     <h1>Add New Company</h1>
-    <form method="post" enctype="multipart/form-data">
-
-
+    <form method="post" enctype="multipart/form-data" style="grid">
       {% csrf_token %}
 
       <div class="grid-item">
@@ -19,40 +17,68 @@
           id="Founded_Year"
           class="input"
           value="2024"
-          name="Founded_Year"
+          name="start_year"
         />
       </div>
 
-      <label for="start_year">Start Year:</label>
-      <input type="number" id="start_year" name="start_year" required /><br />
+      <div class="grid-item">
+        <label for="description" >description</label
+        ><textarea
+          type="number"
+          id="Founded_Year"
+          class="input"
+          value="2024"
+          name="description"
+        />
+      </textarea>
+      </div>
 
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea><br />
+    
 
       <label for="image">Image:</label>
       <input type="file" id="image" name="image" required /><br />
 
-      <label for="revenue">Revenue:</label>
-      <input
-        type="number"
-        step="0.01"
-        id="revenue"
-        name="revenue"
-        required
-      /><br />
+      <div class="grid-item">
+        <label for="revenue" class="label">Revenue</label
+        ><input
+          type="number"
+          id="Founded_Year"
+          class="input"
+          value="2024"
+          name="revenue"
+        />
+      </div>
+
+
+      <div class="grid-item">
+        <label for="founder" class="label">founder</label
+        ><input
+          type="text"
+          id="Founded_Year"
+          class="input"
+         
+          name="founder"
+        />
+      </div>
+
+
+      <div class="grid-item">
+        <label for="founder" class="label">investment_round</label
+        ><input
+          type="text"
+          id="Founded_Year"
+          class="input"
+         
+          name="investment_round"
+        />
+      </div>
 
       
 
-      <label for="founder">Founder:</label>
-      <input type="text" id="founder" name="founder" required /><br />
+     
 
-      <label for="investment_round">Investment Round:</label>
-      <input
-        type="text"
-        id="investment_round"
-        name="investment_round"
-        required
-      /><br />
+   
+
 
       <button type="submit">Add Company</button>
     </form>
