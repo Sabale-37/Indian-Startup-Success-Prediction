@@ -1,4 +1,4 @@
-{% extends "./base.html" %} {% block content %}
+{% extends "./basic.html" %} {% block content %}
 
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,20 @@
   <body>
     <h1>Add New Company</h1>
     <form method="post" enctype="multipart/form-data">
+
+
       {% csrf_token %}
-      
+
+      <div class="grid-item">
+        <label for="start_year" class="label">Start Year</label
+        ><input
+          type="number"
+          id="Founded_Year"
+          class="input"
+          value="2024"
+          name="Founded_Year"
+        />
+      </div>
 
       <label for="start_year">Start Year:</label>
       <input type="number" id="start_year" name="start_year" required /><br />
@@ -28,6 +40,8 @@
         name="revenue"
         required
       /><br />
+
+      
 
       <label for="founder">Founder:</label>
       <input type="text" id="founder" name="founder" required /><br />
