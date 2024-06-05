@@ -1,12 +1,12 @@
 {% extends "./main.html" %} {% block content %}
 <body>
   <h1>Investment Pitch Form</h1>
-  <form method="post" class="grid">
+  <form method="post" class="grid" action="{% url 'create_message' %}">
     {% csrf_token %}
 
-    <div class='grid-item'>
+    <div class='grid-item' style="width: 305%; margin: auto" action="{% url 'create_message' %}" method="post" >
 
-    <label for="to">to</label>
+    <label for="to" hidden>to</label>
     <input
       type="text"
       id="to"
@@ -14,22 +14,24 @@
       required
       value="{{username}}"
       class="input"
+      hidden
     />
     
     <br />
 
-    <label for="location">letter</label>
+    <label for="location">pitching invitation to {{username}}</label>
     <textarea
       type="text"
       id="location"
       name="letter"
       required
       class="input"
+      style="height: 250px"
     ></textarea><br />
 
    
 
-    <button type="submit" name='get-started'>Submit</button>
+    <button type="submit" class='get-started' style="width:7rem; margin-left: 0rem">Submit</button>
   </form>
 </body>
 {% endblock content %}

@@ -48,9 +48,9 @@
           <img src="{%static 'collegelogo.jpg'%}" alt="logo" />
         </div>
         <ul>
-          <li><a class="active" href="/">Home</a></li>
-          <li><a href="{% url "company" %}">View</a></li>
-          <li><a href="{% url "add" %}">Add Company</a></li>
+          <li><a class="{% if request.path == '/' %}active{% endif %}" href="/">Home</a></li>
+          <li><a class="{% if request.path == '/invest/' %}active{% endif %}" href="{% url "company" %}">View</a></li>
+          <li><a class="{% if request.path == '/invest/add/' %}active{% endif %}" href="{% url "add" %}">Add Company</a></li>
         </ul>
         <div class="srch">
           <input type="text" class="search" placeholder="Search here..." /><img

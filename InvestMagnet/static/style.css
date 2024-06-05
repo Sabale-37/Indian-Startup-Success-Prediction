@@ -664,6 +664,8 @@ h1 {
   border: 1px solid var(--color-primary);
   background-color: rgb(248, 247, 247);
   border-radius: 5px;
+  width: 60vw;
+  height: 200px;
   padding: 0.8rem 1.2rem;
 }
 
@@ -702,4 +704,21 @@ h1 {
 
 #digital-marketing-chart {
   height: 300px !important;
+}
+
+.input-text {
+  border: 1px solid var(--color-primary);
+  background-color: rgb(248, 247, 247);
+  border-radius: 5px;
+  padding: 0.8rem 1.2rem;
+  width: 60vw;
+  height: 200px;
+}
+
+.gridding {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 8px 0px;
+  width: 305%;
 }

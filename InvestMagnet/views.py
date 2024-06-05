@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Company
 import json
+from django.http import JsonResponse
+from django.contrib.auth.models import User
+from .models import Message
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -105,5 +109,26 @@ def pitch(request):
     if request.method =="POST":
         username = request.POST.get('username')
 
-    return render(request, 'pitch.html', {'username': username})
-   
+        return render(request, 'pitch.html', {'username': username})
+    
+    return redirect('/invest/')
+
+
+@login_required
+def create_message(request):
+    if request.method == 'POST':
+        to_username = request.POST.get('to')
+        message_content = request.POST.get('letter')
+
+        try:
+            to_user = User.objects.get(username=to_username)
+            message = Message.objects.create(
+                to_user=to_user,
+                from_user=request.user,
+                message=message_content
+            )
+            message.save()  # Save the message object
+            return redirect('/invest/')
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'Recipient user does not exist'}, status=404)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

@@ -1,7 +1,4 @@
-{% extends "./main.html" %} 
-
-
-{% block content %}
+{% extends "./main.html" %} {% block content %}
 
 <h1>All Companies</h1>
 {% load static %}
@@ -9,7 +6,7 @@
 <div class="grid">
   {% for company in companies %}
 
-  <div class="card" style="width: 18rem">
+  <div class="card" style="width: 18rem; margin: 1rem 0">
     <img
       class="card-img-top"
       src="{{ company.image.url }}"
@@ -25,5 +22,8 @@
   </div>
   {% endfor %}
 </div>
-
+<br />
+<br />
+<br />
+<br />
 {% endblock content %}

@@ -35,3 +35,14 @@ class Company(models.Model):
     { "year": "2022", "total_sales": "22000", "new_income": "4000" },
     { "year": "2023", "total_sales": "9000", "new_income": "3000" }
     ])
+
+
+
+class Message(models.Model):
+    to_user = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.from_user} to {self.to_user}"

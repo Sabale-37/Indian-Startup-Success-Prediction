@@ -1,0 +1,36 @@
+{% extends "Home/base.html" %} {% block content %} 
+{% load static %}
+
+   
+
+</header>
+<main style='position: fixed;
+top: 10rem;
+left: 6vw;width: 90vw'>
+<h1 style="margin-bottom : 1rem">Inbox</h1>
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <table style="border-collapse: collapse; border: 1px solid black;">
+    <tbody>
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">From</th>
+            <td style="border: 1px solid black; padding: 8px;">{{ message.from_user.username }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Message</th>
+            <td style="border: 1px solid black; padding: 8px;">{{ message.message }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">Sent At</th>
+            <td style="border: 1px solid black; padding: 8px;">{{ message.created_at }}</td>
+        </tr>
+    </tbody>
+</table>
+
+  {% endfor %}
+</ul>
+{% else %}
+<p>No messages received.</p>
+</main>
+{% endif %} {% endblock content %}

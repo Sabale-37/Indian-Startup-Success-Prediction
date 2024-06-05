@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .startup_prediction import process_and_train_model
 from .churn_prediction import train_and_predict_hr_model
+from .sentiment import predict_sentiment
 # Create your views here.
 
 def prediction_business(request):
@@ -95,3 +96,20 @@ def predict_employee_status(request):
             'values': values})
 
     return render(request)
+
+
+def sentiment(request):
+    if request.method == "POST":
+        user_message = request.POST.get('user_message')
+
+        sent = predict_sentiment(user_message)
+        print(sent)
+
+        sentiment_dict = {0: 'Negative', 1: 'Neutral', 2: 'Positive'}
+
+        return render(request, 'sentiment.html', {'message': sentiment_dict[sent]})
+        
+
+
+    
+    return render(request, 'sentiment.html')

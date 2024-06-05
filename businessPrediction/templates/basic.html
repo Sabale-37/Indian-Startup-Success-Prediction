@@ -38,9 +38,14 @@
           <img src="{%static 'collegelogo.jpg'%}" alt="logo" />
         </div>
         <ul>
-          <li><a class="active" href="/">Home</a></li>
-          <li><a href="{% url "churn" %}">Employee Prediction</a></li>
-          <li><a href="{% url "churn_dashboard" %}">dashboard</a></li>
+          <li><a class="{% if request.path == '/' %}active{% endif %}" href="/">Home</a></li>
+          {% if request.path != '/prediction/sentiment/' %}
+          <li><a class="{% if request.path == '/prediction/churn/' %}active{% endif %}" href="{% url "churn" %}">Employee Prediction</a></li>
+          <li><a class="{% if request.path == '/prediction/churn_dashboard/' %}active{% endif %}" href="{% url "churn_dashboard" %}">dashboard</a></li>
+          {% endif %}
+          {% if request.path == '/prediction/sentiment/' %}
+          <li><a class="{% if request.path == '/prediction/sentiment/' %}active{% endif %}" href="{% url "churn" %}">Employee Prediction</a></li>
+          {% endif %}
         </ul>
         <div class="srch">
           <input type="text" class="search" placeholder="Search here..." /><img

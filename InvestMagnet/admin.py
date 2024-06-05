@@ -7,3 +7,14 @@ class CompanyAdmin(admin.ModelAdmin):
     list_filter = ('start_year', 'investment_round')
 
 admin.site.register(Company, CompanyAdmin)
+
+
+
+from .models import Message
+
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('to_user', 'from_user', 'message', 'created_at')
+    search_fields = ('to_user__username', 'from_user__username', 'message')
+    list_filter = ('created_at',)
+
+admin.site.register(Message, MessageAdmin)

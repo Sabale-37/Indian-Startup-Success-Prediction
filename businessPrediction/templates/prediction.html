@@ -1,6 +1,6 @@
 {% extends "./base.html" %} {% block content %}
 <main class="main">
-  <h1>Business success prediction</h1>
+  <h1>Startup success prediction</h1>
   <form action="/prediction/dashboard/" method="POST">
     {% csrf_token %}
     <div class="grid">
@@ -11,13 +11,13 @@
           id="Sector"
           class="input"
           type="text"
-          value="FinTech"
+          value="HealthTech"
         />
       </div>
 
       <div class="grid-item">
         <label for="City" class="City"> City </label>
-        <input name="City" id="City" class="input" type="text" value="Bangalore" />
+        <input name="City" id="City" class="input" type="text" value="Delhi" />
       </div>
 
       <div class="grid-item">
@@ -26,7 +26,7 @@
           name="Startup_Name"
           id="Startup_Name"
           class="input"
-          value="FinTechCo"
+          value="HealthInc"
         />
       </div>
 
@@ -36,7 +36,7 @@
           type="number"
           id="Founded_Year"
           class="input"
-          value="2024"
+          value="2016"
           name="Founded_Year"
         />
       </div>
@@ -47,7 +47,7 @@
           type="number"
           id="Funding_Amount"
           class="input"
-          value="10000"
+          value="3000000"
           name="Funding_Amount"
         />
       </div>
@@ -58,7 +58,7 @@
           type="number"
           id="Funding_Rounds"
           class="input"
-          value="3"
+          value="4"
           name="Funding_Rounds"
         />
       </div>
@@ -69,7 +69,7 @@
           type="number"
           id="Investor_Count"
           class="input"
-          value="3"
+          value="4"
           name="Investor_Count"
         />
       </div>
@@ -79,7 +79,7 @@
           type="number"
           id="Team_Size"
           class="input"
-          value="5"
+          value="30"
           name="Team_Size"
         />
       </div>
@@ -89,7 +89,7 @@
           type="number"
           id="Revenue"
           class="input"
-          value="10000000"
+          value="5000000"
           name="Revenue"
         />
       </div>
@@ -100,7 +100,7 @@
           id="Profit_Margin"
           class="input"
           name="Profit_Margin"
-          value="20"
+          value="5"
         />
       </div>
       <div class="grid-item">
@@ -110,7 +110,7 @@
           id="Customer_Count"
           class="input"
           name="Customer_Count"
-          value="200000"
+          value="100000"
         />
       </div>
       <div class="grid-item">
@@ -120,7 +120,7 @@
           id="Growth_Rate"
           class="input"
           name="Growth_Rate"
-          value="30"
+          value="20"
         />
       </div>
       <div class="grid-item">
@@ -130,7 +130,7 @@
           id="Founder_Experience"
           class="input"
           name="Founder_Experience"
-          value="15"
+          value="10"
         />
       </div>
       <div class="grid-item">
@@ -140,7 +140,7 @@
           id="Market_Size"
           class="input"
           name="Market_Size"
-          value="500000000"
+          value="800000000"
         />
       </div>
     </div>
